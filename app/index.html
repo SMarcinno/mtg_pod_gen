@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Magic Pods Generator</title>
-    <!-- Link zur überarbeiteten CSS-Datei -->
-    <link rel="stylesheet" href="styles.css" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Magic Pods Generator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
-    <header>
-        <h1>Magic Pods Generator</h1>
-        <p class="subtitle">Bilde per Knopfdruck zufällige Gruppen (Pods) aus deinen Spielern.</p>
-    </header>
+  <header>
+    <h1>Magic Pods Generator</h1>
+    <p class="subtitle">Bilde per Knopfdruck zufällige Gruppen (Pods) aus deinen Spielern.</p>
+  </header>
 
-    <main>
-        <!-- Bereich: Spieler hinzufügen -->
-        <section id="add-player">
-            <input
-                type="text"
-                id="player-name"
-                placeholder="Spielername eingeben"
-                aria-label="Name des Spielers"
-            />
-            <button id="add-btn" class="btn primary">Hinzufügen</button>
-        </section>
+  <main>
+    <!-- Bereich: Spieler hinzufügen -->
+    <section id="add-player">
+      <input
+        type="text"
+        id="player-name"
+        placeholder="Spielername eingeben"
+        aria-label="Name des Spielers"
+      />
+      <button id="add-btn" class="btn primary">Hinzufügen</button>
+    </section>
 
-        <!-- Bereich: Listen-Steuerung -->
-        <section id="controls">
-            <button id="select-all-btn" class="btn">Alle auswählen</button>
-            <button id="deselect-all-btn" class="btn">Auswahl aufheben</button>
-            <button id="generate-pods-btn" class="btn primary">Pods generieren</button>
-        </section>
+    <!-- Bereich: Steuerungsknöpfe -->
+    <section id="controls">
+      <button id="select-all-btn" class="btn">Alle auswählen</button>
+      <button id="deselect-all-btn" class="btn">Auswahl aufheben</button>
+      <button id="generate-pods-btn" class="btn primary">Pods generieren</button>
+    </section>
 
-        <!-- Bereich: Spieler-Liste -->
-        <section id="player-list-section">
-            <ul id="players-ul">
-                <!-- Dynamisch per JavaScript befüllt -->
-            </ul>
-        </section>
+    <!-- Neu: Toggle-Button und Spieler-Liste -->
+    <section id="player-list-wrapper">
+      <button id="toggle-players-btn" class="btn">Spieler-Liste verbergen</button>
+      <section id="player-list-section">
+        <ul id="players-ul">
+          <!-- Wird in app.js dynamisch befüllt -->
+        </ul>
+      </section>
+    </section>
 
-        <!-- Bereich: Pods-Ergebnis -->
-        <section id="pods-section">
-            <div id="pods-container">
-                <!-- Dynamisch per JavaScript befüllt -->
-            </div>
-        </section>
-    </main>
+    <!-- Bereich: Pods-Ergebnis -->
+    <section id="pods-section">
+      <div id="pods-container">
+        <!-- Wird in app.js dynamisch befüllt -->
+      </div>
+    </section>
+  </main>
 
-    <footer>
-        <p>© 2025 Magic Pods</p>
-    </footer>
+  <footer>
+    <p>© 2025 Magic Pods</p>
+  </footer>
 
-  
-    <script src="pod-names.js"></script>
 
-    <!-- Dein bestehendes JavaScript -->
-    <script src="app.js"></script>
+  <!-- Pod-Namen (falls vorhanden) -->
+  <script src="pod-names.js"></script>
+  <!-- Hauptskript -->
+  <script src="app.js"></script>
 </body>
 </html>

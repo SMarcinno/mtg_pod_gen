@@ -194,10 +194,10 @@
   }
   
   #players-ul li.selected {
-    background-color: var(--mtg-accent);
-    color: var(--mtg-background);
+    background-color: #e0e0e0;  /* sehr helles Grau */
+    color: #333333;             /* dunkles Anthrazit */
   }
-  
+
   #players-ul li:hover {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     background-color: #2b2b2b;
@@ -286,6 +286,57 @@
   .pod ul li:last-child {
     border-bottom: none;
   }
+
+
+/* ===== Collapsed-State für die Spieler-Liste ===== */
+#player-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  /* Die eigentliche Liste */
+  #player-list-section {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+  }
+  
+  /* Wenn #player-list-wrapper die Klasse .collapsed hat, versteckt die Liste */
+  #player-list-wrapper.collapsed #player-list-section {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none; /* verhindert unerwünschte Klicks */
+  }
+  
+  /* Standardmäßig lassen wir die Liste so groß werden wie nötig */
+  #player-list-section {
+    max-height: 1000px; /* groß genug, um alle Listeneinträge anzuzeigen */
+    opacity: 1;
+  }
+  
+  /* Optional: Button-Icon drehen, wenn eingeklappt */
+  #toggle-players-btn {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+  
+/* Neue Version mit Unicode-Dreieck: ▼ und ▶ */
+#toggle-players-btn::before {
+    content: "▼";
+    display: inline-block;
+    font-size: 0.9rem;              /* bei Bedarf anpassen */
+    margin-right: 0.25rem;          /* Abstand zum Button-Text */
+    transition: transform 0.3s ease;
+  }
+  
+  /* Wenn eingeklappt, verwenden wir ▶ und drehen nicht (sondern tauschen Content) */
+  #player-list-wrapper.collapsed #toggle-players-btn::before {
+    content: "▶";
+    transform: none;
+  }
+  
   
   /* ========== Responsive Anpassungen ========== */
   @media screen and (max-width: 600px) {

@@ -139,5 +139,23 @@ function renderPods(pods) {
     });
 }
 
+
+// Toggle-Button und Wrapper holen
+const togglePlayersBtn = document.getElementById('toggle-players-btn');
+const playerListWrapper = document.getElementById('player-list-wrapper');
+
+// Anfangszustand: Liste ist ausgeklappt. Beim Klick Klasse toggeln.
+togglePlayersBtn.addEventListener('click', () => {
+    playerListWrapper.classList.toggle('collapsed');
+
+    // Button-Text anpassen
+    if (playerListWrapper.classList.contains('collapsed')) {
+        togglePlayersBtn.textContent = 'Spieler-Liste anzeigen';
+    } else {
+        togglePlayersBtn.textContent = 'Spieler-Liste verbergen';
+    }
+});
+
+
 // On load
 renderPlayers();
