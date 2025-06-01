@@ -514,4 +514,90 @@
     margin-bottom: var(--spacing-xs);
   }
 
+  /* ===== Pod-Card aufgefrischt ===== */
+.pod {
+    background: linear-gradient(135deg, #2e2e2e, #1b1b1b); /* dunkler Verlauf */
+    border: 2px solid var(--mtg-border);
+    border-radius: var(--radius-large);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pod:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Pod-Titel */
+  .pod h3 {
+    font-family: var(--font-family-title);
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-xs);
+    color: var(--mtg-accent);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+  
+  /* Pod-Type-Badge */
+  .pod-type {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-small);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+  }
+  
+  /* Farbliche Unterscheidung der Badges */
+  .pod-type.edh {
+    background-color: var(--pref-edh-bg);
+    border: 1px solid var(--pref-edh-border);
+  }
+  .pod-type.edh:hover {
+    background-color: #004080;
+  }
+  
+  .pod-type.cedh {
+    background-color: var(--pref-cedh-bg);
+    border: 1px solid var(--pref-cedh-border);
+  }
+  .pod-type.cedh:hover {
+    background-color: #800035;
+  }
+  
+  .pod-type.neutral {
+    background-color: var(--pref-neutral-bg);
+    color: var(--pref-neutral-text);
+    border: 1px solid var(--pref-neutral-border);
+  }
+  .pod-type.neutral:hover {
+    background-color: #dddddd;
+  }
+  
+  /* Spieler-Liste innerhalb der Pod-Card (optional: leichter Kontrast) */
+  .pod ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pod ul li {
+    padding: var(--spacing-xs) 0;
+    font-size: var(--font-base);
+    color: var(--mtg-secondary-text);
+    border-bottom: 1px solid #3a3a3a;
+  }
+  .pod ul li:last-child {
+    border-bottom: none;
+  }
   

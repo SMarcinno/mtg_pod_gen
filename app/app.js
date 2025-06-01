@@ -236,27 +236,43 @@ const readPlayers = () => {
   function renderPods(pods) {
     podsContainer.innerHTML = '';
     pods.forEach((pod) => {
+      // Pod-Typ bestimmen
+      let podType = 'neutral';
+      if (pod.some(p => p.pref === 'edh')) {
+        podType = 'edh';
+      } else if (pod.some(p => p.pref === 'cedh')) {
+        podType = 'cedh';
+      }
+  
       const card = document.createElement('div');
       card.className = 'pod';
   
+      // Titel mit zufälligem Namen
       const title = document.createElement('h3');
-      const randomName = typeof getRandomPodName === 'function'
+      const randomName = (typeof getRandomPodName === 'function')
         ? getRandomPodName()
         : 'Pod';
       title.textContent = randomName;
       card.appendChild(title);
   
+      // Badge für Pod-Typ
+      const badge = document.createElement('span');
+      badge.className = `pod-type ${podType}`;
+      badge.textContent = podType.toUpperCase();
+      card.appendChild(badge);
+  
+      // Spieler-Liste
       const ul = document.createElement('ul');
-      pod.forEach((p) => {
+      pod.forEach(p => {
         const li = document.createElement('li');
         li.textContent = `${p.name} (${p.pref})`;
         ul.appendChild(li);
       });
       card.appendChild(ul);
+  
       podsContainer.appendChild(card);
     });
   }
-  
   // Toggle player list visibility
   togglePlayersBtn.addEventListener('click', () => {
     playerListWrapper.classList.toggle('collapsed');
