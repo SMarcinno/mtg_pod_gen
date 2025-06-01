@@ -1,39 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Magic Pods Generator</title>
-    <link rel="manifest" href="manifest.json" />
+    <!-- Link zur überarbeiteten CSS-Datei -->
     <link rel="stylesheet" href="styles.css" />
-    <meta name="theme-color" content="#4b0082" />
+
 </head>
 <body>
-    <main>
+    <header>
         <h1>Magic Pods Generator</h1>
+        <p class="subtitle">Bilde per Knopfdruck zufällige Gruppen (Pods) aus deinen Spielern.</p>
+    </header>
 
+    <main>
+        <!-- Bereich: Spieler hinzufügen -->
         <section id="add-player">
-            <input type="text" id="player-name" placeholder="New player name" />
-            <button id="add-btn">Add</button>
+            <input
+                type="text"
+                id="player-name"
+                placeholder="Spielername eingeben"
+                aria-label="Name des Spielers"
+            />
+            <button id="add-btn" class="btn primary">Hinzufügen</button>
         </section>
 
-        <section id="players-list">
-            <h2>Players (tap to select for tonight)</h2>
-            <ul id="players-ul"></ul>
-        </section>
-
+        <!-- Bereich: Listen-Steuerung -->
         <section id="controls">
-            <button id="select-all-btn">Select All</button>
-            <button id="deselect-all-btn">Clear Selection</button>
-            <button id="generate-pods-btn" class="primary">Generate Pods</button>
+            <button id="select-all-btn" class="btn">Alle auswählen</button>
+            <button id="deselect-all-btn" class="btn">Auswahl aufheben</button>
+            <button id="generate-pods-btn" class="btn primary">Pods generieren</button>
         </section>
 
-        <section id="pods-output">
-            <h2>Pods</h2>
-            <div id="pods-container"></div>
+        <!-- Bereich: Spieler-Liste -->
+        <section id="player-list-section">
+            <ul id="players-ul">
+                <!-- Dynamisch per JavaScript befüllt -->
+            </ul>
+        </section>
+
+        <!-- Bereich: Pods-Ergebnis -->
+        <section id="pods-section">
+            <div id="pods-container">
+                <!-- Dynamisch per JavaScript befüllt -->
+            </div>
         </section>
     </main>
 
-    <script src="app.js" defer></script>
+    <footer>
+        <p>© 2025 Magic Pods</p>
+    </footer>
+
+  
+    <script src="pod-names.js"></script>
+
+    <!-- Dein bestehendes JavaScript -->
+    <script src="app.js"></script>
 </body>
 </html>

@@ -122,8 +122,10 @@ function renderPods(pods) {
         const card = document.createElement('div');
         card.className = 'pod';
 
+        // Zufälliger MTG-Style-Pod-Name statt "Pod 1", "Pod 2", ...
         const title = document.createElement('h3');
-        title.textContent = `Pod ${idx + 1}`;
+        const randomName = getRandomPodName(); // Funktion aus pod-names.js
+        title.textContent = randomName;
         card.appendChild(title);
 
         const ul = document.createElement('ul');
@@ -139,10 +141,3 @@ function renderPods(pods) {
 
 // On load
 renderPlayers();
-
-// Register service worker
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js');
-    });
-}

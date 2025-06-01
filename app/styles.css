@@ -1,92 +1,322 @@
-* {
+/* ========== Basis: CSS-Variablen für MTG-Palette & Abstände ========== */
+:root {
+    /* Farben */
+    --mtg-background: #1b1b1b;            /* dunkles Schiefergrau */
+    --mtg-surface: #2e2e2e;               /* etwas helleres Grau für Bereiche */
+    --mtg-text: #f0e6d2;                  /* helles Papier-Beige */
+    --mtg-secondary-text: #cac0b5;        /* dezentes Hellgrau/Beige */
+    --mtg-accent: #b79f57;                /* mattes Gold, MTG-Akzent */
+    --mtg-accent-hover: #a58e46;          /* dunkleres Gold beim Hover */
+    --mtg-error: #a02e2e;                 /* tiefes Burgunderrot */
+  
+    /* Rahmen-Farbe (wie Kartenrand) */
+    --mtg-border: #4b3f2f;                /* dunkles Braun für Ränder */
+  
+    /* Abstände & Radien */
+    --radius-small: 0.25rem;
+    --radius-medium: 0.5rem;
+    --radius-large: 0.75rem;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+  
+    /* Schriftgrößen & -familie */
+    --font-base: 1rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.5rem;
+    --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-family-title: 'Times New Roman', Georgia, serif;
+    --font-weight-normal: 400;
+    --font-weight-bold: 600;
+  }
+  
+  * {
     box-sizing: border-box;
-    font-family: system-ui, sans-serif;
-}
-
-body {
     margin: 0;
-    padding: 1rem;
-    background: #fafafa;
-    color: #222;
-}
-
-h1, h2 {
-    margin: 0.5rem 0;
-    text-align: center;
-}
-
-#add-player {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-
-#player-name {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-}
-
-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    background: #e0e0e0;
-}
-
-button.primary {
-    background: #4b0082;
-    color: #fff;
-}
-
-ul {
-    list-style: none;
     padding: 0;
-}
-
-li {
+    font-family: var(--font-family-base);
+    color: var(--mtg-text);
+  }
+  
+  /* ========== Grund-Layout ========== */
+  body {
+    background-color: var(--mtg-background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+  }
+  
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #3f2e1b, #1b1b1b);
+    color: var(--mtg-text);
+    padding: var(--spacing-md) var(--spacing-sm);
+    text-align: center;
+    border-bottom: 4px solid var(--mtg-accent);
+  }
+  
+  header h1 {
+    font-family: var(--font-family-title);
+    font-size: var(--font-xl);
+    font-weight: var(--font-weight-bold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  header .subtitle {
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-normal);
+    color: var(--mtg-secondary-text);
+    font-style: italic;
+  }
+  
+  /* Main-Bereich */
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-md) var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--mtg-surface);
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: center;
+    border-top: 2px solid var(--mtg-border);
+    font-size: 0.875rem;
+    color: var(--mtg-secondary-text);
+  }
+  
+  /* ========== Sektion: Spieler hinzufügen ========== */
+  #add-player {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #player-name {
+    flex: 1;
+    min-width: 200px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--mtg-border);
+    border-radius: var(--radius-medium);
+    background-color: var(--mtg-surface);
+    color: var(--mtg-text);
+    font-size: var(--font-base);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  #player-name:focus {
+    border-color: var(--mtg-accent);
+  }
+  
+  /* ========== Buttons: Basis ========== */
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--mtg-border);
+    border-radius: var(--radius-medium);
+    cursor: pointer;
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-bold);
+    background-color: var(--mtg-surface);
+    color: var(--mtg-text);
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+  }
+  
+  .btn:hover {
+    background-color: var(--mtg-background);
+    color: var(--mtg-accent);
+  }
+  
+  .btn:active {
+    transform: scale(0.97);
+  }
+  
+  /* Primäre Buttons mit Gold-Akzent */
+  .btn.primary {
+    background-color: var(--mtg-accent);
+    color: var(--mtg-background);
+    border-color: var(--mtg-accent-hover);
+  }
+  
+  .btn.primary:hover {
+    background-color: var(--mtg-accent-hover);
+    border-color: var(--mtg-accent);
+    color: var(--mtg-text);
+  }
+  
+  /* ========== Sektion: Steuerungsknöpfe ========== */
+  #controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* ========== Sektion: Spieler-Liste ========== */
+  #player-list-section {
+    background-color: var(--mtg-surface);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-large);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--mtg-border);
+  }
+  
+  #players-ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  #players-ul li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.5rem;
-    background: #fff;
-    border: 1px solid #ddd;
-}
-
-li.selected {
-    background: #d1c4e9;
-}
-
-.remove-btn {
+    background-color: var(--mtg-background);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--mtg-border);
+    border-radius: var(--radius-small);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    font-weight: var(--font-weight-normal);
+  }
+  
+  #players-ul li.selected {
+    background-color: var(--mtg-accent);
+    color: var(--mtg-background);
+  }
+  
+  #players-ul li:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    background-color: #2b2b2b;
+  }
+  
+  .remove-btn {
     background: transparent;
     border: none;
-    color: #d32f2f;
+    color: var(--mtg-error);
     font-size: 1.2rem;
     cursor: pointer;
-}
-
-#pods-container {
+    padding: var(--spacing-xs);
+    transition: color 0.2s;
+  }
+  
+  .remove-btn:hover {
+    color: #700;
+  }
+  
+  /* ========== Sektion: Pods-Ausgabe als MTG-Karten ========== */
+  #pods-section {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
     justify-content: center;
-    margin-top: 1rem;
-}
-
-.pod {
-    background: #fff;
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 1rem;
-    min-width: 160px;
-}
-
-.pod h3 {
-    margin-top: 0;
+  }
+  
+  #pods-container {
+    display: grid;
+    gap: var(--spacing-lg);
+    width: 100%;
+    /* Mobile: 1 Spalte, Tablet: 2, Desktop: 3 */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .pod {
+    background: linear-gradient(135deg, #3f2e1b, #2e2e2e);
+    border: 3px solid var(--mtg-border);
+    border-radius: var(--radius-large);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-}
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Leichte „Papier“-Textur-Anmutung per Rauschen (WebKit nur) */
+  .pod::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' opacity='0.03'%3E%3Ccircle cx='20' cy='20' r='1' fill='%23fff'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .pod h3 {
+    font-family: var(--font-family-title);
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
+    color: var(--mtg-accent);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+  
+  .pod ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .pod ul li {
+    padding: var(--spacing-xs) 0;
+    font-size: var(--font-base);
+    color: var(--mtg-secondary-text);
+    border-bottom: 1px solid var(--mtg-border);
+  }
+  
+  .pod ul li:last-child {
+    border-bottom: none;
+  }
+  
+  /* ========== Responsive Anpassungen ========== */
+  @media screen and (max-width: 600px) {
+    header h1 {
+      font-size: 1.25rem;
+    }
+  
+    header .subtitle {
+      font-size: 0.875rem;
+    }
+  
+    #add-player,
+    #controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    #pods-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media screen and (min-width: 601px) and (max-width: 900px) {
+    #pods-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (min-width: 901px) {
+    #pods-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
