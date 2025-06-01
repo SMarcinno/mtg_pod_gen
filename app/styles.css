@@ -30,8 +30,24 @@
     --font-family-title: 'Times New Roman', Georgia, serif;
     --font-weight-normal: 400;
     --font-weight-bold: 600;
+  
+    /* Neue Farben für Präferenz-Button */
+    --pref-edh-bg: #005eaa;       /* Blau für edh */
+    --pref-edh-border: #004080;
+    --pref-cedh-bg: #aa004a;      /* Purpur/Rot für cedh */
+    --pref-cedh-border: #800035;
+    --pref-neutral-bg: #eeeeee;   /* Hellgrau für neutral */
+    --pref-neutral-border: #cccccc;
+    --pref-neutral-text: #333333;
+  
+    /* Farbe für Hover-States */
+    --selected-hover-bg: #a58e46;        /* helleres Gold für ausgewählte Spieler bei Hover */
+    --selected-hover-shadow: rgba(0, 0, 0, 0.6);
+    --unselected-hover-bg: #2b2b2b;      /* dunkles Grau für nicht ausgewählte Spieler bei Hover */
+    --unselected-hover-shadow: rgba(0, 0, 0, 0.4);
   }
   
+  /* ===== Globales Reset & Schrift ===== */
   * {
     box-sizing: border-box;
     margin: 0;
@@ -193,16 +209,35 @@
     font-weight: var(--font-weight-normal);
   }
   
+  /* Ausgewählte Spieler-Liste */
   #players-ul li.selected {
-    background-color: #e0e0e0;  /* sehr helles Grau */
-    color: #333333;             /* dunkles Anthrazit */
-  }
-
-  #players-ul li:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    background-color: #2b2b2b;
+    background-color: var(--mtg-accent);  /* goldener Hintergrund */
+    color: var(--mtg-background);         /* dunkler Text */
   }
   
+  #players-ul li.selected span {
+    color: var(--mtg-background);         /* sicherstellen, dass Name gut sichtbar ist */
+  }
+  
+  /* Hover, wenn NICHT ausgewählt */
+  #players-ul li:not(.selected):hover {
+    background-color: var(--unselected-hover-bg);
+    box-shadow: 0 2px 6px var(--unselected-hover-shadow);
+  }
+  
+  /* Hover, wenn ausgewählt */
+  #players-ul li.selected:hover {
+    background-color: var(--selected-hover-bg);
+    box-shadow: 0 2px 6px var(--selected-hover-shadow);
+  }
+  
+  /* Name-Spanne */
+  #players-ul li span {
+    flex: 1;
+    color: var(--mtg-text);
+  }
+  
+  /* Entfernen-Button */
   .remove-btn {
     background: transparent;
     border: none;
@@ -215,6 +250,49 @@
   
   .remove-btn:hover {
     color: #700;
+  }
+  
+  /* ========== Präferenz-Button ====== */
+  .pref-btn {
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-small);
+    font-size: 0.875rem;
+    cursor: pointer;
+    min-width: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    border: 1px solid var(--border-light);
+  }
+  
+  .pref-btn.edh {
+    background-color: var(--pref-edh-bg);
+    color: #ffffff;
+    border-color: var(--pref-edh-border);
+  }
+  
+  .pref-btn.edh:hover {
+    background-color: #004080;
+  }
+  
+  .pref-btn.cedh {
+    background-color: var(--pref-cedh-bg);
+    color: #ffffff;
+    border-color: var(--pref-cedh-border);
+  }
+  
+  .pref-btn.cedh:hover {
+    background-color: #800035;
+  }
+  
+  .pref-btn.neutral {
+    background-color: var(--pref-neutral-bg);
+    color: var(--pref-neutral-text);
+    border-color: var(--pref-neutral-border);
+  }
+  
+  .pref-btn.neutral:hover {
+    background-color: #dddddd;
   }
   
   /* ========== Sektion: Pods-Ausgabe als MTG-Karten ========== */
@@ -286,10 +364,9 @@
   .pod ul li:last-child {
     border-bottom: none;
   }
-
-
-/* ===== Collapsed-State für die Spieler-Liste ===== */
-#player-list-wrapper {
+  
+  /* ========== Collapsed-State für die Spieler-Liste ====== */
+  #player-list-wrapper {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
@@ -314,7 +391,7 @@
     opacity: 1;
   }
   
-  /* Optional: Button-Icon drehen, wenn eingeklappt */
+  /* Button-Icon drehen -> Unicode-Dreieck ▼/▶ */
   #toggle-players-btn {
     align-self: flex-start;
     display: flex;
@@ -322,23 +399,20 @@
     gap: var(--spacing-xs);
   }
   
-/* Neue Version mit Unicode-Dreieck: ▼ und ▶ */
-#toggle-players-btn::before {
+  #toggle-players-btn::before {
     content: "▼";
     display: inline-block;
-    font-size: 0.9rem;              /* bei Bedarf anpassen */
-    margin-right: 0.25rem;          /* Abstand zum Button-Text */
+    font-size: 0.9rem;
+    margin-right: 0.25rem;
     transition: transform 0.3s ease;
   }
   
-  /* Wenn eingeklappt, verwenden wir ▶ und drehen nicht (sondern tauschen Content) */
   #player-list-wrapper.collapsed #toggle-players-btn::before {
     content: "▶";
     transform: none;
   }
   
-  
-  /* ========== Responsive Anpassungen ========== */
+  /* ========== Responsive Anpassungen ====== */
   @media screen and (max-width: 600px) {
     header h1 {
       font-size: 1.25rem;
@@ -354,6 +428,23 @@
       align-items: stretch;
     }
   
+    /* Spieler-Einträge: Wrap, damit Pref-Button und Remove-Button unten stehen */
+    #players-ul li {
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+  
+    #players-ul li span {
+      flex-basis: 100%;
+    }
+  
+    /* Präferenz-Button und Entfernen-Button bleiben fix */
+    .pref-btn,
+    .remove-btn {
+      flex: none;
+    }
+  
+    /* Pod-Karten: Nur eine Spalte */
     #pods-container {
       grid-template-columns: 1fr;
     }
@@ -370,4 +461,57 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
+  
+
+/* ===== Collapsed-State für „Add Player“-Bereich ===== */
+#add-player-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  #add-player {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+  }
+  
+  /* Wenn #add-player-wrapper die Klasse .collapsed-add hat, versteckt den Add-Player-Bereich */
+  #add-player-wrapper.collapsed-add #add-player {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* Standard: Add-Player-Bereich normal anzeigen */
+  #add-player {
+    max-height: 200px; /* groß genug, um das Eingabefeld + Button anzuzeigen */
+    opacity: 1;
+  }
+  
+  /* Toggle-Button Icon drehen (Unicode-Dreieck ▼/▶) */
+  #toggle-add-btn {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+  
+  #toggle-add-btn::before {
+    content: "▼";
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-right: 0.25rem;
+    transition: transform 0.3s ease;
+  }
+  
+  #add-player-wrapper.collapsed-add #toggle-add-btn::before {
+    content: "▶";
+    transform: none;
+  }
+  
+  /* Optional: Kleiner Abstand unter dem Button */
+  #toggle-add-btn {
+    margin-bottom: var(--spacing-xs);
+  }
+
   

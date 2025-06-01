@@ -15,31 +15,35 @@
 
   <main>
     <!-- Bereich: Spieler hinzufügen -->
-    <section id="add-player">
-      <input
-        type="text"
-        id="player-name"
-        placeholder="Spielername eingeben"
-        aria-label="Name des Spielers"
-      />
-      <button id="add-btn" class="btn primary">Hinzufügen</button>
-    </section>
+<!-- NEU: Wrapper für „Add Player“ mit Toggle-Button -->
+    <section id="add-player-wrapper">
+        <button id="toggle-add-btn" class="btn">Spieler hinzufügen</button>
+        <section id="add-player">
+            <input
+                type="text"
+                id="player-name"
+                placeholder="Spielername eingeben"
+                aria-label="Name des Spielers"
+            />
+            <button id="add-btn" class="btn primary">Hinzufügen</button>
+        </section>
 
-    <!-- Bereich: Steuerungsknöpfe -->
-    <section id="controls">
-      <button id="select-all-btn" class="btn">Alle auswählen</button>
-      <button id="deselect-all-btn" class="btn">Auswahl aufheben</button>
-      <button id="generate-pods-btn" class="btn primary">Pods generieren</button>
     </section>
-
     <!-- Toggle-Button und Spieler-Liste -->
     <section id="player-list-wrapper">
-      <button id="toggle-players-btn" class="btn">Spieler-Liste verbergen</button>
+      <button id="toggle-players-btn" class="btn">Spieler-Liste</button>
       <section id="player-list-section">
         <ul id="players-ul">
           <!-- Wird in app.js dynamisch befüllt -->
         </ul>
       </section>
+    </section>
+
+    <!-- Bereich: Steuerungsknöpfe -->
+    <section id="controls">
+        <button id="select-all-btn" class="btn">Alle auswählen</button>
+        <button id="deselect-all-btn" class="btn">Auswahl aufheben</button>
+        <button id="generate-pods-btn" class="btn primary">Pods generieren</button>
     </section>
 
     <!-- Bereich: Pods-Ergebnis -->
