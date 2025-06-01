@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Magic Pods Generator</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="manifest" href="manifest.json" />
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Magic Pods Generator</title>
+      
+        <!-- Manifest für Android/Chrome/Firefox -->
+        <link rel="manifest" href="manifest.json" />
+      
+        <!-- Favicon + iOS-Icon -->
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <link rel="apple-touch-icon" href="favicon.png" />
+      
+        <!-- iOS Web App Meta -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Magic Pods" />
+      
+        <!-- Deine CSS-/JS‐Einbindungen -->
+        <link rel="stylesheet" href="styles.css" />
+        <script src="pod-names.js" defer></script>
+        <script src="app.js" defer></script>
+      </head>
 <body>
   <header>
-    <h1>Magic Pods Generator</h1>
-    <p class="subtitle">Bilde per Knopfdruck zufällige Gruppen (Pods) aus deinen Spielern.</p>
+    <h1>Pods Generator</h1>
+    <p class="subtitle">Pods auf Knopfdruck</p>
   </header>
 
   <main>
@@ -56,12 +71,8 @@
   </main>
 
   <footer>
-    <p>© 2025 Magic Pods</p>
+    <p>© 2025 Pods build by Salva</p>
   </footer>
 
-  <!-- Pod-Namen (falls vorhanden) -->
-  <script src="pod-names.js"></script>
-  <!-- Hauptskript -->
-  <script src="app.js"></script>
 </body>
 </html>
