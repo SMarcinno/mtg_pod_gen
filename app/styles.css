@@ -34,8 +34,8 @@
     /* Neue Farben für Präferenz-Button */
     --pref-edh-bg: #005eaa;       /* Blau für edh */
     --pref-edh-border: #004080;
-    --pref-cedh-bg: #aa004a;      /* Purpur/Rot für cedh */
-    --pref-cedh-border: #800035;
+    --pref-cedh-bg: #8a0ed1;      /* Purpur/Rot für cedh */
+    --pref-cedh-border: #740faf;
     --pref-neutral-bg: #eeeeee;   /* Hellgrau für neutral */
     --pref-neutral-border: #cccccc;
     --pref-neutral-text: #333333;
@@ -282,7 +282,7 @@
   }
   
   .pref-btn.cedh:hover {
-    background-color: #800035;
+    background-color: #8800aa;
   }
   
   .pref-btn.neutral {
